@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate GitHub Profile README Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fab fa-github"></i> Ultimate GitHub Profile README Generator</h1>
+            <p>Create an impressive GitHub profile README with all the essential sections</p>
+            <div class="theme-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </header>
+
+        <div class="generator-container">
+            <div class="form-column">
+                <form id="readme-form">
+                    <!-- Basic Information Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-user"></i> Basic Information</h2>
+                        <div class="form-group">
+                            <label for="username">GitHub Username*</label>
+                            <input type="text" id="username" placeholder="your-username" required>
+                            <button type="button" id="fetch-profile" class="btn-secondary">Fetch Profile</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Professional Title</label>
+                            <input type="text" id="title" placeholder="e.g. Full Stack Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Short Bio</label>
+                            <textarea id="bio" placeholder="A passionate developer..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="City, Country">
+                        </div>
+                    </section>
+
+                    <!-- GitHub Stats Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-chart-bar"></i> GitHub Stats</h2>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="show-stats" checked>
+                                Show GitHub Stats
+                            </label>
+                            <label>
+                                <input type="checkbox" id="show-streak" checked>
+                                Show Streak Stats
+                            </label>
+                            <label>
+                                <input type="checkbox" id="show-languages" checked>
+                                Show Top Languages
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="stats-theme">Stats Theme</label>
+                            <select id="stats-theme">
+                                <option value="default">Default</option>
+                                <option value="dark">Dark</option>
+                                <option value="radical">Radical</option>
+                                <option value="merko">Merko</option>
+                                <option value="gruvbox">Gruvbox</option>
+                                <option value="tokyonight">Tokyo Night</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stats-layout">Stats Layout</label>
+                            <select id="stats-layout">
+                                <option value="default">Default</option>
+                                <option value="compact">Compact</option>
+                                <option value="horizontal">Horizontal</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <!-- Skills Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-code"></i> Skills</h2>
+                        <div class="form-group">
+                            <label>Programming Languages</label>
+                            <div class="skills-container" id="languages-container">
+                                <!-- Will be populated with JS -->
+                            </div>
+                            <button type="button" id="add-language" class="btn-secondary">+ Add Language</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Frameworks & Libraries</label>
+                            <div class="skills-container" id="frameworks-container">
+                                <!-- Will be populated with JS -->
+                            </div>
+                            <button type="button" id="add-framework" class="btn-secondary">+ Add Framework</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Tools & Technologies</label>
+                            <div class="skills-container" id="tools-container">
+                                <!-- Will be populated with JS -->
+                            </div>
+                            <button type="button" id="add-tool" class="btn-secondary">+ Add Tool</button>
+                        </div>
+                    </section>
+
+                    <!-- Social Links Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-share-alt"></i> Social Links</h2>
+                        <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="text" id="twitter" placeholder="yourusername">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="text" id="linkedin" placeholder="in/yourprofile">
+                        </div>
+                        <div class="form-group">
+                            <label for="devto">Dev.to</label>
+                            <input type="text" id="devto" placeholder="yourusername">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Personal Website</label>
+                            <input type="text" id="website" placeholder="https://yourwebsite.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your@email.com">
+                        </div>
+                    </section>
+
+                    <!-- Projects Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+                        <div class="form-group">
+                            <label>Show pinned repositories</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="show-pinned" checked>
+                                    Show pinned repositories
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Custom Projects</label>
+                            <div id="custom-projects">
+                                <!-- Will be populated with JS -->
+                            </div>
+                            <button type="button" id="add-project" class="btn-secondary">+ Add Project</button>
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                        <div id="experience-items">
+                            <!-- Will be populated with JS -->
+                        </div>
+                        <button type="button" id="add-experience" class="btn-secondary">+ Add Experience</button>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                        <div id="education-items">
+                            <!-- Will be populated with JS -->
+                        </div>
+                        <button type="button" id="add-education" class="btn-secondary">+ Add Education</button>
+                    </section>
+
+                    <!-- Badges Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-certificate"></i> Badges & Certifications</h2>
+                        <div id="badge-items">
+                            <!-- Will be populated with JS -->
+                        </div>
+                        <button type="button" id="add-badge" class="btn-secondary">+ Add Badge</button>
+                    </section>
+
+                    <!-- Fun Section -->
+                    <section class="form-section">
+                        <h2><i class="fas fa-smile"></i> Fun Facts</h2>
+                        <div class="form-group">
+                            <label for="fun-facts">About You</label>
+                            <textarea id="fun-facts" placeholder="⚡ Fun fact: I..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dev-joke">Developer Joke</label>
+                            <input type="text" id="dev-joke" placeholder="Why do programmers prefer dark mode?">
+                        </div>
+                    </section>
+
+                    <!-- Generate Button -->
+                    <div class="form-actions">
+                        <button type="button" id="generate-btn" class="btn-primary">
+                            <i class="fas fa-magic"></i> Generate README
+                        </button>
+                        <button type="button" id="reset-btn" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preview Column -->
+            <div class="preview-column">
+                <div class="preview-header">
+                    <h2><i class="fas fa-eye"></i> README Preview</h2>
+                    <div class="preview-actions">
+                        <button id="copy-btn" class="btn-secondary">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                        <button id="download-btn" class="btn-secondary">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+                <div class="markdown-preview" id="preview">
+                    <div class="preview-placeholder">
+                        <i class="fab fa-markdown fa-4x"></i>
+                        <p>Your generated README will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Made with <i class="fas fa-heart"></i> for developers</p>
+            <p>Contribute on <a href="https://github.com/yourusername/github-readme-generator" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <!-- Skill Item Template (hidden) -->
+    <template id="skill-template">
+        <div class="skill-item">
+            <select class="skill-name">
+                <option value="javascript">JavaScript</option>
+                <option value="typescript">TypeScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="csharp">C#</option>
+                <option value="php">PHP</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="text" class="custom-skill" placeholder="Custom skill" style="display: none;">
+            <select class="skill-level">
+                <option value="advanced">Advanced</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="beginner">Beginner</option>
+            </select>
+            <button type="button" class="remove-skill"><i class="fas fa-times"></i></button>
+        </div>
+    </template>
+
+    <!-- Project Item Template (hidden) -->
+    <template id="project-template">
+        <div class="project-item">
+            <input type="text" class="project-title" placeholder="Project Title">
+            <input type="text" class="project-url" placeholder="Project URL">
+            <textarea class="project-description" placeholder="Project description"></textarea>
+            <div class="project-tech">
+                <input type="text" class="project-tech-input" placeholder="Tech used (comma separated)">
+            </div>
+            <button type="button" class="remove-project"><i class="fas fa-times"></i></button>
+        </div>
+    </template>
+
+    <!-- Experience Item Template (hidden) -->
+    <template id="experience-template">
+        <div class="experience-item">
+            <input type="text" class="experience-title" placeholder="Job Title">
+            <input type="text" class="experience-company" placeholder="Company">
+            <div class="date-range">
+                <input type="text" class="experience-start" placeholder="Start Date (MM/YYYY)">
+                <span>to</span>
+                <input type="text" class="experience-end" placeholder="End Date (MM/YYYY)">
+                <label>
+                    <input type="checkbox" class="experience-current"> Current
+                </label>
+            </div>
+            <textarea class="experience-description" placeholder="Description"></textarea>
+            <button type="button" class="remove-experience"><i class="fas fa-times"></i></button>
+        </div>
+    </template>
+
+    <!-- Education Item Template (hidden) -->
+    <template id="education-template">
+        <div class="education-item">
+            <input type="text" class="education-degree" placeholder="Degree">
+            <input type="text" class="education-institution" placeholder="Institution">
+            <div class="date-range">
+                <input type="text" class="education-start" placeholder="Start Date (MM/YYYY)">
+                <span>to</span>
+                <input type="text" class="education-end" placeholder="End Date (MM/YYYY)">
+                <label>
+                    <input type="checkbox" class="education-current"> Current
+                </label>
+            </div>
+            <button type="button" class="remove-education"><i class="fas fa-times"></i></button>
+        </div>
+    </template>
+
+    <!-- Badge Item Template (hidden) -->
+    <template id="badge-template">
+        <div class="badge-item">
+            <input type="text" class="badge-title" placeholder="Badge Title">
+            <input type="text" class="badge-issuer" placeholder="Issuer (e.g., AWS, Google)">
+            <input type="text" class="badge-url" placeholder="Credential URL">
+            <button type="button" class="remove-badge"><i class="fas fa-times"></i></button>
+        </div>
+    </template>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const themeSwitch = document.getElementById('theme-switch');
+            const usernameInput = document.getElementById('username');
+            const fetchProfileBtn = document.getElementById('fetch-profile');
+            const generateBtn = document.getElementById('generate-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const preview = document.getElementById('preview');
+            
+            // Template elements
+            const skillTemplate = document.getElementById('skill-template');
+            const projectTemplate = document.getElementById('project-template');
+            const experienceTemplate = document.getElementById('experience-template');
+            const educationTemplate = document.getElementById('education-template');
+            const badgeTemplate = document.getElementById('badge-template');
+            
+            // Containers
+            const languagesContainer = document.getElementById('languages-container');
+            const frameworksContainer = document.getElementById('frameworks-container');
+            const toolsContainer = document.getElementById('tools-container');
+            const customProjects = document.getElementById('custom-projects');
+            const experienceItems = document.getElementById('experience-items');
+            const educationItems = document.getElementById('education-items');
+            const badgeItems = document.getElementById('badge-items');
+            
+            // GitHub API base URL
+            const GITHUB_API_URL = 'https://api.github.com';
+            
+            // Initialize the app
+            initApp();
+            
+            function initApp() {
+                // Verify all required elements exist
+                if (!verifyElements()) {
+                    showAlert('System error: Missing required elements', 'error');
+                    return;
+                }
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Apply saved theme
+                applySavedTheme();
+                
+                // Add default items
+                addDefaultSkills();
+            }
+            
+            function verifyElements() {
+                const requiredElements = [
+                    themeSwitch, usernameInput, fetchProfileBtn, generateBtn,
+                    resetBtn, copyBtn, downloadBtn, preview,
+                    skillTemplate, projectTemplate, experienceTemplate,
+                    educationTemplate, badgeTemplate,
+                    languagesContainer, frameworksContainer, toolsContainer,
+                    customProjects, experienceItems, educationItems, badgeItems
+                ];
+                
+                let allElementsExist = true;
+                
+                requiredElements.forEach(element => {
+                    if (!element) {
+                        console.error('Missing element:', element?.id || 'unknown');
+                        allElementsExist = false;
+                    }
+                });
+                
+                return allElementsExist;
+            }
+            
+            function setupEventListeners() {
+                // Theme toggle
+                themeSwitch.addEventListener('change', toggleTheme);
+                
+                // Fetch GitHub profile
+                fetchProfileBtn.addEventListener('click', fetchGitHubProfile);
+                
+                // Generate README
+                generateBtn.addEventListener('click', generateREADME);
+                
+                // Reset form
+                resetBtn.addEventListener('click', resetForm);
+                
+                // Copy to clipboard
+                copyBtn.addEventListener('click', copyToClipboard);
+                
+                // Download README
+                downloadBtn.addEventListener('click', downloadREADME);
+                
+                // Add items buttons
+                document.getElementById('add-language').addEventListener('click', () => addSkillItem('languages', 'language'));
+                document.getElementById('add-framework').addEventListener('click', () => addSkillItem('frameworks', 'framework'));
+                document.getElementById('add-tool').addEventListener('click', () => addSkillItem('tools', 'tool'));
+                document.getElementById('add-project').addEventListener('click', addProjectItem);
+                document.getElementById('add-experience').addEventListener('click', addExperienceItem);
+                document.getElementById('add-education').addEventListener('click', addEducationItem);
+                document.getElementById('add-badge').addEventListener('click', addBadgeItem);
+            }
+            
+            function toggleTheme() {
+                const isDarkMode = themeSwitch.checked;
+                document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            }
+            
+            function applySavedTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                themeSwitch.checked = savedTheme === 'dark';
+                document.body.setAttribute('data-theme', savedTheme);
+            }
+            
+            async function fetchGitHubProfile() {
+                const username = usernameInput.value.trim();
+                if (!username) {
+                    showAlert('Please enter a GitHub username', 'error');
+                    return;
+                }
+                
+                try {
+                    showLoader(fetchProfileBtn, true);
+                    
+                    const [userResponse, reposResponse] = await Promise.all([
+                        fetch(`${GITHUB_API_URL}/users/${username}`),
+                        fetch(`${GITHUB_API_URL}/users/${username}/repos?sort=updated&per_page=100`)
+                    ]);
+                    
+                    if (!userResponse.ok) throw new Error(`User not found (${userResponse.status})`);
+                    if (!reposResponse.ok) throw new Error(`Repositories not found (${reposResponse.status})`);
+                    
+                    const userData = await userResponse.json();
+                    const reposData = await reposResponse.json();
+                    
+                    populateFormWithGitHubData(userData, reposData);
+                    showAlert('Profile fetched successfully!', 'success');
+                } catch (error) {
+                    console.error('GitHub API error:', error);
+                    showAlert(`Failed to fetch profile: ${error.message}`, 'error');
+                } finally {
+                    showLoader(fetchProfileBtn, false);
+                }
+            }
+            
+            function populateFormWithGitHubData(userData, reposData) {
+                // Basic info
+                if (userData.name) document.getElementById('name').value = userData.name;
+                if (userData.bio) document.getElementById('bio').value = userData.bio;
+                if (userData.location) document.getElementById('location').value = userData.location;
+                
+                // Website
+                if (userData.blog) {
+                    document.getElementById('website').value = 
+                        userData.blog.startsWith('http') ? userData.blog : `https://${userData.blog}`;
+                }
+                
+                // Twitter
+                if (userData.twitter_username) {
+                    document.getElementById('twitter').value = userData.twitter_username;
+                }
+                
+                // Analyze repos for top languages
+                const languages = analyzeReposForLanguages(reposData);
+                updateSkillsSection(languages);
+            }
+            
+            function analyzeReposForLanguages(repos) {
+                const languageStats = {};
+                
+                repos.forEach(repo => {
+                    if (repo.language) {
+                        languageStats[repo.language] = (languageStats[repo.language] || 0) + 1;
+                    }
+                });
+                
+                return Object.entries(languageStats)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(item => item[0])
+                    .slice(0, 5);
+            }
+            
+            function updateSkillsSection(languages) {
+                languagesContainer.innerHTML = '';
+                languages.forEach(lang => addSkillItem('languages', 'language', lang));
+            }
+            
+            function addDefaultSkills() {
+                // Default languages
+                ['javascript', 'html', 'css'].forEach(lang => {
+                    addSkillItem('languages', 'language', lang);
+                });
+                
+                // Default frameworks
+                ['react'].forEach(framework => {
+                    addSkillItem('frameworks', 'framework', framework);
+                });
+                
+                // Default tools
+                ['git', 'github'].forEach(tool => {
+                    addSkillItem('tools', 'tool', tool);
+                });
+            }
+            
+            function addSkillItem(containerType, skillType, skillName = '') {
+                let container;
+                switch(containerType) {
+                    case 'languages': container = languagesContainer; break;
+                    case 'frameworks': container = frameworksContainer; break;
+                    case 'tools': container = toolsContainer; break;
+                    default: return;
+                }
+                
+                const skillItem = skillTemplate.content.cloneNode(true);
+                const skillSelect = skillItem.querySelector('.skill-name');
+                const customSkillInput = skillItem.querySelector('.custom-skill');
+                const removeBtn = skillItem.querySelector('.remove-skill');
+                
+                // Set default value if provided
+                if (skillName) {
+                    const option = Array.from(skillSelect.options)
+                        .find(opt => opt.value === skillName.toLowerCase());
+                    
+                    if (option) {
+                        option.selected = true;
+                    } else {
+                        skillSelect.value = 'other';
+                        customSkillInput.value = skillName;
+                        customSkillInput.style.display = 'block';
+                    }
+                }
+                
+                // Show/hide custom skill input
+                skillSelect.addEventListener('change', function() {
+                    customSkillInput.style.display = this.value === 'other' ? 'block' : 'none';
+                });
+                
+                // Remove skill
+                removeBtn.addEventListener('click', function() {
+                    this.closest('.skill-item').remove();
+                });
+                
+                container.appendChild(skillItem);
+            }
+            
+            function addProjectItem() {
+                const projectItem = projectTemplate.content.cloneNode(true);
+                const removeBtn = projectItem.querySelector('.remove-project');
+                
+                removeBtn.addEventListener('click', function() {
+                    this.closest('.project-item').remove();
+                });
+                
+                customProjects.appendChild(projectItem);
+            }
+            
+            function addExperienceItem() {
+                const experienceItem = experienceTemplate.content.cloneNode(true);
+                const removeBtn = experienceItem.querySelector('.remove-experience');
+                const currentCheckbox = experienceItem.querySelector('.experience-current');
+                const endDateInput = experienceItem.querySelector('.experience-end');
+                
+                currentCheckbox.addEventListener('change', function() {
+                    endDateInput.disabled = this.checked;
+                    endDateInput.value = this.checked ? 'Present' : '';
+                });
+                
+                removeBtn.addEventListener('click', function() {
+                    this.closest('.experience-item').remove();
+                });
+                
+                experienceItems.appendChild(experienceItem);
+            }
+            
+            function addEducationItem() {
+                const educationItem = educationTemplate.content.cloneNode(true);
+                const removeBtn = educationItem.querySelector('.remove-education');
+                const currentCheckbox = educationItem.querySelector('.education-current');
+                const endDateInput = educationItem.querySelector('.education-end');
+                
+                currentCheckbox.addEventListener('change', function() {
+                    endDateInput.disabled = this.checked;
+                    endDateInput.value = this.checked ? 'Present' : '';
+                });
+                
+                removeBtn.addEventListener('click', function() {
+                    this.closest('.education-item').remove();
+                });
+                
+                educationItems.appendChild(educationItem);
+            }
+            
+            function addBadgeItem() {
+                const badgeItem = badgeTemplate.content.cloneNode(true);
+                const removeBtn = badgeItem.querySelector('.remove-badge');
+                
+                removeBtn.addEventListener('click', function() {
+                    this.closest('.badge-item').remove();
+                });
+                
+                badgeItems.appendChild(badgeItem);
+            }
+            
+            function generateREADME() {
+                const username = usernameInput.value.trim();
+                if (!username) {
+                    showAlert('Please enter your GitHub username', 'error');
+                    return;
+                }
+                
+                try {
+                    showLoader(generateBtn, true);
+                    
+                    const formData = getFormData();
+                    const readmeContent = buildREADME(formData, username);
+                    
+                    displayPreview(readmeContent);
+                    showAlert('README generated successfully!', 'success');
+                } catch (error) {
+                    console.error('Error generating README:', error);
+                    showAlert(`Error generating README: ${error.message}`, 'error');
+                } finally {
+                    showLoader(generateBtn, false);
+                }
+            }
+            
+            function getFormData() {
+                return {
+                    // Basic info
+                    name: document.getElementById('name').value,
+                    title: document.getElementById('title').value,
+                    bio: document.getElementById('bio').value,
+                    location: document.getElementById('location').value,
+                    
+                    // GitHub stats
+                    showStats: document.getElementById('show-stats').checked,
+                    showStreak: document.getElementById('show-streak').checked,
+                    showLanguages: document.getElementById('show-languages').checked,
+                    statsTheme: document.getElementById('stats-theme').value,
+                    statsLayout: document.getElementById('stats-layout').value,
+                    showPinned: document.getElementById('show-pinned').checked,
+                    
+                    // Skills
+                    languages: getSkillsData(languagesContainer),
+                    frameworks: getSkillsData(frameworksContainer),
+                    tools: getSkillsData(toolsContainer),
+                    
+                    // Social links
+                    twitter: document.getElementById('twitter').value,
+                    linkedin: document.getElementById('linkedin').value,
+                    devto: document.getElementById('devto').value,
+                    website: document.getElementById('website').value,
+                    email: document.getElementById('email').value,
+                    
+                    // Projects
+                    customProjects: getProjectsData(),
+                    
+                    // Experience
+                    experiences: getExperiencesData(),
+                    
+                    // Education
+                    education: getEducationData(),
+                    
+                    // Badges
+                    badges: getBadgesData(),
+                    
+                    // Fun facts
+                    funFacts: document.getElementById('fun-facts').value,
+                    devJoke: document.getElementById('dev-joke').value
+                };
+            }
+            
+            function getSkillsData(container) {
+                return Array.from(container.querySelectorAll('.skill-item')).map(item => {
+                    const select = item.querySelector('.skill-name');
+                    const customInput = item.querySelector('.custom-skill');
+                    const levelSelect = item.querySelector('.skill-level');
+                    
+                    return {
+                        name: select.value === 'other' ? customInput.value : select.options[select.selectedIndex].text,
+                        level: levelSelect.value
+                    };
+                });
+            }
+            
+            function getProjectsData() {
+                return Array.from(document.querySelectorAll('.project-item')).map(item => ({
+                    title: item.querySelector('.project-title').value,
+                    url: item.querySelector('.project-url').value,
+                    description: item.querySelector('.project-description').value,
+                    tech: item.querySelector('.project-tech-input').value.split(',').map(t => t.trim())
+                }));
+            }
+            
+            function getExperiencesData() {
+                return Array.from(document.querySelectorAll('.experience-item')).map(item => ({
+                    title: item.querySelector('.experience-title').value,
+                    company: item.querySelector('.experience-company').value,
+                    start: item.querySelector('.experience-start').value,
+                    end: item.querySelector('.experience-end').value,
+                    current: item.querySelector('.experience-current').checked,
+                    description: item.querySelector('.experience-description').value
+                }));
+            }
+            
+            function getEducationData() {
+                return Array.from(document.querySelectorAll('.education-item')).map(item => ({
+                    degree: item.querySelector('.education-degree').value,
+                    institution: item.querySelector('.education-institution').value,
+                    start: item.querySelector('.education-start').value,
+                    end: item.querySelector('.education-end').value,
+                    current: item.querySelector('.education-current').checked
+                }));
+            }
+            
+            function getBadgesData() {
+                return Array.from(document.querySelectorAll('.badge-item')).map(item => ({
+                    title: item.querySelector('.badge-title').value,
+                    issuer: item.querySelector('.badge-issuer').value,
+                    url: item.querySelector('.badge-url').value
+                }));
+            }
+            
+            function buildREADME(data, username) {
+                let content = '';
+                
+                // Header section
+                content += `# ${data.name || 'Hi there'} 👋\n\n`;
+                if (data.title) content += `### ${data.title}\n\n`;
+                if (data.bio) content += `> ${data.bio}\n\n`;
+                if (data.location) content += `📍 ${data.location}\n\n`;
+
+                // GitHub Stats
+                if (data.showStats) {
+                    content += `## GitHub Stats\n`;
+                    content += `![${username}'s GitHub stats](https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=${data.statsTheme}&hide_border=true&layout=${data.statsLayout})\n\n`;
+                    
+                    if (data.showStreak) {
+                        content += `![GitHub Streak](https://streak-stats.demolab.com?user=${username}&theme=${data.statsTheme}&hide_border=true)\n\n`;
+                    }
+                    
+                    if (data.showLanguages) {
+                        content += `## Top Languages\n`;
+                        content += `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=${data.statsTheme}&hide_border=true&layout=${data.statsLayout})\n\n`;
+                    }
+                }
+
+                // Skills
+                content += `## Skills\n`;
+                content += buildSkillsSection(data.languages, data.frameworks, data.tools);
+
+                // Experience
+                if (data.experiences.length > 0) {
+                    content += `## Experience\n`;
+                    data.experiences.forEach(exp => {
+                        content += `### ${exp.title}\n`;
+                        content += `**${exp.company}** • ${exp.start} - ${exp.end}\n`;
+                        if (exp.description) content += `${exp.description}\n`;
+                        content += `\n`;
+                    });
+                }
+
+                // Education
+                if (data.education.length > 0) {
+                    content += `## Education\n`;
+                    data.education.forEach(edu => {
+                        content += `### ${edu.degree}\n`;
+                        content += `**${edu.institution}** • ${edu.start} - ${edu.end}\n\n`;
+                    });
+                }
+
+                // Projects
+                if (data.showPinned || data.customProjects.length > 0) {
+                    content += `## Projects\n`;
+                    
+                    if (data.showPinned) {
+                        content += `### Pinned Repositories\n`;
+                        content += `![Pinned Repositories](https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=REPO_NAME&theme=${data.statsTheme})\n\n`;
+                    }
+                    
+                    if (data.customProjects.length > 0) {
+                        content += `### Featured Projects\n`;
+                        data.customProjects.forEach(project => {
+                            content += `#### [${project.title}](${project.url})\n`;
+                            if (project.description) content += `> ${project.description}\n`;
+                            if (project.tech.length > 0) content += `**Tech:** ${project.tech.join(', ')}\n\n`;
+                        });
+                    }
+                }
+
+                // Badges
+                if (data.badges.length > 0) {
+                    content += `## Badges & Certifications\n`;
+                    data.badges.forEach(badge => {
+                        content += `[![${badge.title}](${badge.url})](${badge.url}) `;
+                    });
+                    content += `\n\n`;
+                }
+
+                // Social links
+                content += `## Connect with me\n`;
+                content += buildSocialLinks(data);
+
+                // Fun facts
+                if (data.funFacts || data.devJoke) {
+                    content += `## Fun Facts\n`;
+                    if (data.funFacts) content += `${data.funFacts}\n\n`;
+                    if (data.devJoke) content += `### Dev Joke\n> ${data.devJoke}\n\n`;
+                }
+
+                // Footer
+                content += `---\n`;
+                content += `⭐️ From [${username}](https://github.com/${username})\n`;
+
+                return content;
+            }
+            
+            function buildSkillsSection(languages, frameworks, tools) {
+                let content = '';
+                
+                // Languages
+                if (languages.length > 0) {
+                    content += `### Languages\n`;
+                    languages.forEach(lang => {
+                        content += `![${lang.name}](https://img.shields.io/badge/-${encodeURIComponent(lang.name)}-${getSkillColor(lang.name)}?logo=${getSkillLogo(lang.name)}&logoColor=white) `;
+                    });
+                    content += `\n\n`;
+                }
+                
+                // Frameworks
+                if (frameworks.length > 0) {
+                    content += `### Frameworks & Libraries\n`;
+                    frameworks.forEach(framework => {
+                        content += `![${framework.name}](https://img.shields.io/badge/-${encodeURIComponent(framework.name)}-${getSkillColor(framework.name)}?logo=${getSkillLogo(framework.name)}&logoColor=white) `;
+                    });
+                    content += `\n\n`;
+                }
+                
+                // Tools
+                if (tools.length > 0) {
+                    content += `### Tools & Technologies\n`;
+                    tools.forEach(tool => {
+                        content += `![${tool.name}](https://img.shields.io/badge/-${encodeURIComponent(tool.name)}-${getSkillColor(tool.name)}?logo=${getSkillLogo(tool.name)}&logoColor=white) `;
+                    });
+                    content += `\n\n`;
+                }
+                
+                return content;
+            }
+            
+            function getSkillColor(skillName) {
+                const colors = {
+                    'javascript': 'F7DF1E',
+                    'typescript': '3178C6',
+                    'python': '3776AB',
+                    'java': '007396',
+                    'csharp': '239120',
+                    'php': '777BB4',
+                    'html': 'E34F26',
+                    'css': '1572B6',
+                    'react': '61DAFB',
+                    'angular': 'DD0031',
+                    'vue': '4FC08D',
+                    'node.js': '339933',
+                    'express': '000000',
+                    'django': '092E20',
+                    'flask': '000000',
+                    'git': 'F05032',
+                    'github': '181717',
+                    'docker': '2496ED',
+                    'aws': '232F3E',
+                    'azure': '0089D6',
+                    'firebase': 'FFCA28'
+                };
+                
+                return colors[skillName.toLowerCase()] || '000000';
+            }
+            
+            function getSkillLogo(skillName) {
+                const logos = {
+                    'javascript': 'javascript',
+                    'typescript': 'typescript',
+                    'python': 'python',
+                    'java': 'java',
+                    'csharp': 'csharp',
+                    'php': 'php',
+                    'html': 'html5',
+                    'css': 'css3',
+                    'react': 'react',
+                    'angular': 'angular',
+                    'vue': 'vue.js',
+                    'node.js': 'node.js',
+                    'express': 'express',
+                    'django': 'django',
+                    'flask': 'flask',
+                    'git': 'git',
+                    'github': 'github',
+                    'docker': 'docker',
+                    'aws': 'amazonaws',
+                    'azure': 'microsoftazure',
+                    'firebase': 'firebase'
+                };
+                
+                return logos[skillName.toLowerCase()] || '';
+            }
+            
+            function buildSocialLinks(data) {
+                let content = '';
+                
+                if (data.twitter) {
+                    content += `[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/${data.twitter}) `;
+                }
+                
+                if (data.linkedin) {
+                    const linkedinUrl = data.linkedin.startsWith('in/') ? 
+                        `https://linkedin.com/${data.linkedin}` : data.linkedin;
+                    content += `[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](${linkedinUrl}) `;
+                }
+                
+                if (data.devto) {
+                    content += `[![Dev.to](https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white)](https://dev.to/${data.devto}) `;
+                }
+                
+                if (data.website) {
+                    const websiteUrl = data.website.startsWith('http') ? 
+                        data.website : `https://${data.website}`;
+                    content += `[![Website](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](${websiteUrl}) `;
+                }
+                
+                if (data.email) {
+                    content += `[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:${data.email}) `;
+                }
+                
+                content += `\n\n`;
+                return content;
+            }
+            
+            function displayPreview(content) {
+                const preview = document.getElementById('preview');
+                
+                // Create modern preview layout
+                preview.innerHTML = `
+                    <div class="preview-view-options">
+                        <button class="active" data-view="preview">Preview</button>
+                        <button data-view="code">Code</button>
+                    </div>
+                    
+                    <div class="preview-content">
+                        ${createModernPreview(content)}
+                    </div>
+                    
+                    <div class="code-view-container">
+                        <div class="code-view-header">
+                            <h3>README.md</h3>
+                            <select id="language-select">
+                                <option value="markdown">Markdown</option>
+                                <option value="html">HTML</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="php">PHP</option>
+                            </select>
+                        </div>
+                        <div class="code-view-content">
+                            <pre><code>${escapeHtml(content)}</code></pre>
+                        </div>
+                    </div>
+                `;
+                
+                // Add view toggle functionality
+                document.querySelectorAll('.preview-view-options button').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelector('.preview-view-options button.active').classList.remove('active');
+                        this.classList.add('active');
+                        
+                        if (this.dataset.view === 'preview') {
+                            document.querySelector('.preview-content').style.display = 'block';
+                            document.querySelector('.code-view-container').style.display = 'none';
+                        } else {
+                            document.querySelector('.preview-content').style.display = 'none';
+                            document.querySelector('.code-view-container').style.display = 'block';
+                        }
+                    });
+                });
+                
+                // Add language selection functionality
+                document.getElementById('language-select').addEventListener('change', function() {
+                    // In a real implementation, you would syntax highlight based on language
+                    console.log('Selected language:', this.value);
+                });
+                
+                // Animate progress bars
+                setTimeout(() => {
+                    document.querySelectorAll('.progress-fill').forEach(bar => {
+                        const width = bar.parentElement.getAttribute('data-width');
+                        bar.style.width = width;
+                    });
+                }, 500);
+            }
+            
+            function createModernPreview(content) {
+                // Parse the markdown content and create a modern preview
+                // This is a simplified version - in a real app you'd use a markdown parser
+                
+                return `
+                    <div class="profile-header animate-in">
+                        <img src="https://avatars.githubusercontent.com/${document.getElementById('username').value || 'github'}?s=200" 
+                             alt="Profile" class="profile-avatar">
+                        <div class="profile-title">
+                            <h1>${document.getElementById('name').value || 'GitHub User'}</h1>
+                            <p>${document.getElementById('title').value || 'Developer'}</p>
+                            <div class="profile-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                ${document.getElementById('location').value || 'Worldwide'}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-bio animate-in delay-1">
+                        <p>${document.getElementById('bio').value || 'Passionate developer creating amazing things'}</p>
+                    </div>
+                    
+                    <div class="stats-container animate-in delay-1">
+                        <div class="stat-card">
+                            <h3>Repositories</h3>
+                            <div class="stat-value">42</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Stars</h3>
+                            <div class="stat-value">128</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Followers</h3>
+                            <div class="stat-value">56</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Following</h3>
+                            <div class="stat-value">23</div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="animate-in delay-2">Skills</h2>
+                    <div class="progress-container animate-in delay-2">
+                        ${generateSkillBars()}
+                    </div>
+                    
+                    <h2 class="animate-in delay-2">Featured Projects</h2>
+                    <div class="projects-grid animate-in delay-3">
+                        ${generateProjectCards()}
+                    </div>
+                    
+                    <h2 class="animate-in delay-2">Activity</h2>
+                    <div class="activity-calendar animate-in delay-3">
+                        <!-- This would be replaced with actual contribution calendar -->
+                        <div style="height: 150px; display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                            GitHub Contribution Calendar
+                        </div>
+                    </div>
+                `;
+            }
+            
+            function generateSkillBars() {
+                const languages = getSkillsData(languagesContainer);
+                const frameworks = getSkillsData(frameworksContainer);
+                const tools = getSkillsData(toolsContainer);
+                
+                let html = '';
+                
+                // Add languages
+                languages.forEach(lang => {
+                    const width = lang.level === 'advanced' ? '90%' : lang.level === 'intermediate' ? '65%' : '40%';
+                    html += `
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span>${lang.name}</span>
+                                <span>${lang.level}</span>
+                            </div>
+                            <div class="progress-bar" data-width="${width}">
+                                <div class="progress-fill" style="background-color: ${getSkillColor(lang.name)}"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                return html;
+            }
+            
+            function generateProjectCards() {
+                const projects = getProjectsData();
+                
+                if (projects.length === 0) {
+                    return `
+                        <div class="project-card">
+                            <div class="project-image">
+                                <i class="fas fa-project-diagram fa-3x"></i>
+                            </div>
+                            <div class="project-content">
+                                <h3>Sample Project</h3>
+                                <p>This is an example project card</p>
+                                <div class="project-tech">
+                                    <span class="tech-badge">JavaScript</span>
+                                    <span class="tech-badge">HTML</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                return projects.map(project => `
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-project-diagram fa-3x"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>${project.title || 'Untitled Project'}</h3>
+                            <p>${project.description || 'No description provided'}</p>
+                            <div class="project-tech">
+                                ${project.tech ? project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('') : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+            
+            function resetForm() {
+                if (confirm('Are you sure you want to reset the form? All your data will be lost.')) {
+                    document.getElementById('readme-form').reset();
+                    
+                    // Clear all containers
+                    [languagesContainer, frameworksContainer, toolsContainer, customProjects, 
+                     experienceItems, educationItems, badgeItems].forEach(container => {
+                        container.innerHTML = '';
+                    });
+                    
+                    // Reset preview
+                    preview.innerHTML = `
+                        <div class="preview-placeholder">
+                            <i class="fab fa-markdown fa-4x"></i>
+                            <p>Your generated README will appear here</p>
+                        </div>
+                    `;
+                    
+                    // Add default skills back
+                    addDefaultSkills();
+                    
+                    showAlert('Form reset successfully', 'success');
+                }
+            }
+            
+            function copyToClipboard() {
+                if (!preview.textContent || preview.textContent.includes('Your generated README')) {
+                    showAlert('Nothing to copy. Please generate a README first.', 'error');
+                    return;
+                }
+
+                navigator.clipboard.writeText(preview.textContent)
+                    .then(() => showAlert('README copied to clipboard!', 'success'))
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        showAlert('Failed to copy README', 'error');
+                    });
+            }
+            
+            function downloadREADME() {
+                if (!preview.textContent || preview.textContent.includes('Your generated README')) {
+                    showAlert('Nothing to download. Please generate a README first.', 'error');
+                    return;
+                }
+
+                const blob = new Blob([preview.textContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'README.md';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showAlert('README downloaded!', 'success');
+            }
+            
+            function showLoader(button, show) {
+                if (show) {
+                    button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${button.textContent}`;
+                    button.disabled = true;
+                } else {
+                    const originalText = button.getAttribute('data-original-text') || button.textContent;
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }
+            }
+            
+            function showAlert(message, type) {
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${type}`;
+                alert.textContent = message;
+                
+                document.body.appendChild(alert);
+                
+                setTimeout(() => {
+                    alert.classList.add('fade-out');
+                    setTimeout(() => alert.remove(), 500);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
